@@ -44,7 +44,7 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
     private PublishSubject<NPCClickEvent> observableClick = PublishSubject.create();
     private PublishSubject<Location> observableLocation = PublishSubject.create();
 
-    public CitizensEntityNPC(EntityType type, Location location){
+    public CitizensEntityNPC(EntityType type, Location location) {
         npc = CitizensAPI.getNPCRegistry().createNPC(type, "");
         npc.spawn(location);
 
@@ -65,12 +65,12 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
 
     @Override
     public void emitClick(NPCClickEvent clickEvent) {
-        if(clickEvent.getClicked() != this)
+        if (clickEvent.getClicked() != this)
             return;
         observableClick.onNext(clickEvent);
     }
 
-    private void completeOnDespawn(PublishSubject subject){
+    private void completeOnDespawn(PublishSubject subject) {
         getDespawnCompletable().subscribe(() -> subject.onComplete());
     }
 
@@ -87,12 +87,13 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
     }
 
     public void setNameVisible(boolean visible) {
-        if(npc.getEntity() != null)
-        npc.getEntity().setCustomNameVisible(visible);
+        npc.data().set(NPC.NAMEPLATE_VISIBLE_METADATA, visible);
+        if (npc.getEntity() != null)
+            npc.getEntity().setCustomNameVisible(visible);
     }
 
     public boolean isNameVisible() {
-        if(npc.getEntity() == null)
+        if (npc.getEntity() == null)
             return false;
         return npc.getEntity().isCustomNameVisible();
     }
@@ -126,7 +127,7 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
     }
 
     public void lookAt(Vector vector) {
-        if(getLocation() == null)
+        if (getLocation() == null)
             return;
         npc.faceLocation(new Location(getLocation().getWorld(), vector.getX(), vector.getY(), vector.getZ()));
     }
