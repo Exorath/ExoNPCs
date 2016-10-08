@@ -48,7 +48,7 @@ public interface EntityNPC extends NPC, Damageable {
     void setName(String name);
 
     /**
-     * Sets the visibility of the entities name (true by default)
+     * Sets the visibility of the entities name (false by default)
      *
      * @param visible true to display the name to players, false to hide it from them
      */
@@ -78,4 +78,17 @@ public interface EntityNPC extends NPC, Damageable {
      * @param yaw the yaw to move the {@link EntityNPC}'s body to
      */
     void setBodyYaw(float yaw);
+
+
+    /**
+     * Gets whether or not this entity is muted (true by default).
+     * @return true if the entity is muted, false if not
+     */
+    boolean isSilent();
+
+    /**
+     * Mutes/unmutes this entity.
+     * @param silent true to mute entity, false to unmute it
+     */
+    void setSilent(boolean silent);
 }

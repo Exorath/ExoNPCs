@@ -96,4 +96,5 @@ public interface NPC extends LocationObservable {
      * @return whether or not this entity is despawned
      */
     boolean isDespawned();
+
 }

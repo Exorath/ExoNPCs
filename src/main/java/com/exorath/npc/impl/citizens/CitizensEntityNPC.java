@@ -22,6 +22,7 @@ import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.Trait;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -46,10 +47,15 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
     public CitizensEntityNPC(EntityType type, Location location){
         npc = CitizensAPI.getNPCRegistry().createNPC(type, "");
         npc.spawn(location);
-        npc.getEntity().setCustomName(null);
 
         completeOnDespawn(observableLocation);
         completeOnDespawn(observableClick);
+
+        setSilent(true);
+
+        setName("");
+        setNameVisible(false);
+
     }
 
     @Override
@@ -147,5 +153,15 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
 
     public Observable<Location> getObservableLocation() {
         return observableLocation;
+    }
+
+    @Override
+    public boolean isSilent() {
+        return npc.data().get(NPC.SILENT_METADATA);
+    }
+
+    @Override
+    public void setSilent(boolean silent) {
+        npc.data().set(NPC.SILENT_METADATA, silent);
     }
 }
