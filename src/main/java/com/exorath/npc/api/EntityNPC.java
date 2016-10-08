@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.exorath.npc;
+package com.exorath.npc.api;
 
 import com.exorath.commons.InteractObservable;
 import org.bukkit.entity.EntityType;
@@ -22,7 +22,7 @@ import org.bukkit.entity.EntityType;
 /**
  * Created by toonsev on 10/7/2016.
  */
-public interface EntityNPC extends NPC, InteractObservable {
+public interface EntityNPC extends NPC, Damageable {
 
     /**
      * Gets the {@link EntityType} of this {@link EntityNPC}
@@ -62,6 +62,8 @@ public interface EntityNPC extends NPC, InteractObservable {
      * @return whether or not the name of this {@link EntityNPC} is visible
      */
     boolean isNameVisible();
+
+
 
     /**
      * Sets the yaw of the {@link EntityNPC}'s head (solely rotates the head left and right)

@@ -14,9 +14,11 @@
  *    limitations under the License.
  */
 
-package com.exorath.npc;
+package com.exorath.npc.api;
 
 import com.exorath.commons.LocationObservable;
+import io.reactivex.Completable;
+import io.reactivex.Observable;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
@@ -73,4 +75,25 @@ public interface NPC extends LocationObservable {
      * Despawns the {@link NPC}.
      */
     void despawn();
+
+    /**
+     * This completable completes when the NPC is despawned.
+     *
+     * @return a completable that completes when the npc despawns
+     */
+    Completable getDespawnCompletable();
+
+    Observable<NPCClickEvent> getClickObservable();
+
+    /**
+     * Emits an {@link NPCClickEvent} to the {@link #getClickObservable()}.
+     * @param clickEvent the event to emit
+     */
+    void emitClick(NPCClickEvent clickEvent);
+    /**
+     * Gets whether or not this entity is despawned.
+     *
+     * @return whether or not this entity is despawned
+     */
+    boolean isDespawned();
 }
