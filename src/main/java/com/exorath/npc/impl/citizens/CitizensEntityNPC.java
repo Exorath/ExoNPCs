@@ -21,6 +21,7 @@ import com.exorath.npc.api.NPCClickEvent;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
+import javafx.scene.control.Skinnable;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.Trait;
@@ -33,6 +34,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.util.Vector;
+
+import java.util.UUID;
 
 /**
  * Created by toonsev on 10/7/2016.
@@ -88,14 +91,17 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
 
     public void setNameVisible(boolean visible) {
         npc.data().set(NPC.NAMEPLATE_VISIBLE_METADATA, visible);
-        if (npc.getEntity() != null)
-            npc.getEntity().setCustomNameVisible(visible);
     }
 
     public boolean isNameVisible() {
         if (npc.getEntity() == null)
             return false;
         return npc.getEntity().isCustomNameVisible();
+    }
+
+    @Override
+    public void setSkin(UUID owner) {
+        npc.data().set(NPC.PLAYER_SKIN_UUID_METADATA, owner);
     }
 
     public void setHeadYaw(float yaw) {

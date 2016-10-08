@@ -19,6 +19,8 @@ package com.exorath.npc.api;
 import com.exorath.commons.InteractObservable;
 import org.bukkit.entity.EntityType;
 
+import java.util.UUID;
+
 /**
  * Created by toonsev on 10/7/2016.
  */
@@ -46,6 +48,15 @@ public interface EntityNPC extends NPC, Damageable {
      * @param name the name to assign to this {@link EntityNPC}
      */
     void setName(String name);
+
+    /**
+     * Sets the skin of this npc to the skin of the provided owner.
+     *
+     * May throw exception when called on an EntityType different from PLAYER.
+     *
+     * @param owner the owner to fetch the skin from
+     */
+    void setSkin(UUID owner);
 
     /**
      * Sets the visibility of the entities name (false by default)
