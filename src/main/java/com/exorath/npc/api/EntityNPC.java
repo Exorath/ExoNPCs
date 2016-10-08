@@ -75,7 +75,6 @@ public interface EntityNPC extends NPC, Damageable {
     boolean isNameVisible();
 
 
-
     /**
      * Sets the yaw of the {@link EntityNPC}'s head (solely rotates the head left and right)
      *

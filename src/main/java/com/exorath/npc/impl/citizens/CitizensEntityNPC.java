@@ -61,6 +61,10 @@ public class CitizensEntityNPC implements EntityNPC, Listener {
 
     }
 
+    public NPC citizens() {
+        return npc;
+    }
+
     @Override
     public Observable<NPCClickEvent> getClickObservable() {
         return observableClick;
